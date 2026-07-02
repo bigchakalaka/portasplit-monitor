@@ -75,10 +75,10 @@ module.exports = {
       id: 'amazon',
       name: 'Amazon.fr',
       type: 'retailer',
-      // TODO 1er run : resoudre l'ASIN puis figer https://www.amazon.fr/dp/<ASIN>
-      url: 'https://www.amazon.fr/s?k=midea+portasplit+12000',
+      // Fiche produit confirmee (12000 BTU, ASIN B0CY2YW8BT).
+      url: 'https://www.amazon.fr/dp/B0CY2YW8BT',
       enabled: true,
-      fiability: 'best-effort', // anti-bot agressif
+      fiability: 'best-effort', // anti-bot agressif (captcha frequent)
     },
     {
       id: 'ventigo',
@@ -96,8 +96,11 @@ module.exports = {
       name: 'Leroy Merlin',
       type: 'retailer',
       module: 'generic',
-      url: 'https://www.leroymerlin.fr/produits/recherche.html?query=midea+portasplit+12000',
-      enabled: false, // TODO : resoudre l'URL produit puis passer a true
+      // Fiche produit confirmee, mais le groupe ADEO bloque agressivement
+      // meme la navigation manuelle ("Vous avez ete bloque(e)" constate a
+      // l'ouverture directe) : a surveiller, tres probablement best-effort durable.
+      url: 'https://www.leroymerlin.fr/produits/climatiseur-split-mobile-reversible-portasplit-midea-par-optimea-93857579.html',
+      enabled: true,
       fiability: 'best-effort',
     },
     {
