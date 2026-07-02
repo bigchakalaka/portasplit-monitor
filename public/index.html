@@ -31,6 +31,7 @@
       padding: 8px 14px; font-size: 13px; font-weight: 600; cursor: pointer;
     }
     button:disabled { opacity: .5; cursor: default; }
+    button.mini { background: var(--panel2); color: var(--txt); border: 1px solid var(--border); padding: 4px 9px; font-size: 11px; font-weight: 500; }
     main { padding: 18px 20px; max-width: 1200px; margin: 0 auto; }
     .tablewrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }
     table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -79,10 +80,10 @@
         <thead>
           <tr>
             <th>Site</th><th>Statut</th><th>Prix</th>
-            <th>Dernière vérif</th><th>Dernier changement</th><th>Détail</th><th></th>
+            <th>Dernière vérif</th><th>Dernier changement</th><th>Détail</th><th></th><th></th>
           </tr>
         </thead>
-        <tbody id="rows"><tr><td colspan="7">Chargement…</td></tr></tbody>
+        <tbody id="rows"><tr><td colspan="8">Chargement…</td></tr></tbody>
       </table>
     </div>
 
@@ -131,9 +132,18 @@
             <td>${fmt(s.last_change)}</td>
             <td class="detail" title="${esc(s.detail)}">${esc(s.detail) || ''}</td>
             <td>${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">fiche ↗</a>` : ''}</td>
-          </tr>`).join('') || '<tr><td colspan="7">Aucun site.</td></tr>';
+            <td><button class="mini check-site" data-site="${esc(s.site)}" ${d.cycleInProgress ? 'disabled' : ''}>Vérifier</button></td>
+          </tr>`).join('') || '<tr><td colspan="8">Aucun site.</td></tr>';
+
+        document.querySelectorAll('.check-site').forEach((btn) => {
+          btn.addEventListener('click', async () => {
+            btn.disabled = true; btn.textContent = '…';
+            try { await fetch('/api/check-now/' + encodeURIComponent(btn.dataset.site), { method: 'POST' }); } catch {}
+            setTimeout(refresh, 1500);
+          });
+        });
       } catch (e) {
-        $('rows').innerHTML = `<tr><td colspan="7">Erreur de chargement : ${esc(e.message)}</td></tr>`;
+        $('rows').innerHTML = `<tr><td colspan="8">Erreur de chargement : ${esc(e.message)}</td></tr>`;
       }
     }
 

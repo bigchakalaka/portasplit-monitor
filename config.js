@@ -47,17 +47,21 @@ module.exports = {
       name: 'Darty',
       type: 'retailer',
       // TODO 1er run : verifier l'URL produit exacte de la ref MMCS-12HRN8-QRD0.
+      // Bloque par le WAF Akamai Bot Manager du groupe Fnac-Darty (403 +
+      // redirection queue.fnacdarty.com?type=waf, confirme par diagnostic
+      // reseau) : pas un souci de selecteur, statut souvent 'unknown'.
       url: 'https://www.darty.com/nav/recherche/' + encodeURIComponent(productRef) + '.html',
       enabled: true,
-      fiability: 'reliable',
+      fiability: 'best-effort',
     },
     {
       id: 'fnac',
       name: 'Fnac',
       type: 'retailer',
+      // Meme WAF Akamai Bot Manager que Darty (403 + redirection queue.fnac.com?type=waf).
       url: 'https://www.fnac.com/a21457105', // fiche indiquee dans la spec
       enabled: true,
-      fiability: 'reliable',
+      fiability: 'best-effort',
     },
     {
       id: 'boulanger',
@@ -122,6 +126,8 @@ module.exports = {
       id: 'ebay',
       name: 'eBay.fr',
       type: 'marketplace',
+      // Bloque par Akamai Bot Manager (403, page d'erreur AkamaiGHost dediee,
+      // confirme par diagnostic reseau) : meme famille de blocage que Darty/Fnac.
       url: 'https://www.ebay.fr/sch/i.html?_nkw=midea+portasplit+12000&_sop=10',
       enabled: true,
       fiability: 'best-effort',

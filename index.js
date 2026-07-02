@@ -65,6 +65,18 @@ async function main() {
     runner.runCycle('manuel').catch((e) => log('error', 'api', e.message));
   });
 
+  // Check manuel d'un seul site (failover quand le cycle auto est en echec).
+  app.post('/api/check-now/:site', (req, res) => {
+    if (runner.isCycleInProgress()) {
+      return res.status(202).json({ started: false, reason: 'cycle déjà en cours' });
+    }
+    if (!config.sites.some((s) => s.id === req.params.site)) {
+      return res.status(404).json({ started: false, reason: 'site inconnu' });
+    }
+    res.json({ started: true });
+    runner.runCycle('manuel', req.params.site).catch((e) => log('error', 'api', e.message));
+  });
+
   app.listen(config.port, '0.0.0.0', () => {
     log('info', 'http', `Dashboard : http://0.0.0.0:${config.port} (accessible via l'IP Tailscale de l'Umbrel)`);
   });
