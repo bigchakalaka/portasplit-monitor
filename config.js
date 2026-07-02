@@ -104,6 +104,17 @@ module.exports = {
       fiability: 'best-effort',
     },
     {
+      id: 'tecnomat',
+      name: 'Tecnomat',
+      type: 'retailer',
+      module: 'generic',
+      // Groupe ADEO (ex-Bricoman, meme groupe que Leroy Merlin) : meme WAF
+      // agressif attendu, best-effort d'office.
+      url: 'https://www.tecnomat.fr/produits/climatiseur-mobile-reversible-portasplit-midea-25088072.html',
+      enabled: true,
+      fiability: 'best-effort',
+    },
+    {
       id: 'castorama',
       name: 'Castorama',
       type: 'retailer',
