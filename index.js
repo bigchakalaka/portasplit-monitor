@@ -22,11 +22,11 @@ function statusText() {
   const sites = state.getAllStates();
   const inStock = sites.filter((s) => s.status === 'in_stock').length;
   const lines = sites.map(
-    (s) => `${statusEmoji(s.status)} *${s.name}* — ${s.status}${s.price ? ` (${s.price})` : ''}`
+    (s) => `${statusEmoji(s.status)} ${s.name} — ${s.status}${s.price ? ` (${s.price})` : ''}`
   );
   const last = runner.getLastCycleAt() ? formatParis(runner.getLastCycleAt()) : '—';
   return (
-    `📊 *État PortaSplit* — ${inStock}/${sites.length} en stock\n` +
+    `📊 État PortaSplit — ${inStock}/${sites.length} en stock\n` +
     lines.join('\n') +
     `\n\nDernier cycle : ${last}`
   );
