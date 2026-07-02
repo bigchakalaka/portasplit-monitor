@@ -78,7 +78,7 @@ async function main() {
   });
 
   app.listen(config.port, '0.0.0.0', () => {
-    log('info', 'http', `Dashboard : http://0.0.0.0:${config.port} (accessible via l'IP Tailscale de l'Umbrel)`);
+    log('info', 'http', `Dashboard : http://0.0.0.0:${config.port} (accessible via l'IP LAN de l'Umbrel)`);
   });
 
   // ── Telegram : listener /status (bonus) ───────────────────────────────────
