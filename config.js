@@ -84,12 +84,10 @@ module.exports = {
       id: 'ventigo',
       name: 'Ventigo',
       type: 'retailer',
-      // TODO 1er run : l'URL de recherche par ref donnait un 404 ; a resoudre
-      // manuellement (ouvrir le site, chercher "midea portasplit 12000",
-      // recuperer l'URL de la FICHE PRODUIT et la figer ici).
-      url: 'https://www.ventigo.fr/recherche?controller=search&s=' + encodeURIComponent('midea portasplit 12000'),
+      // Fiche produit confirmee (ref 81002309, 3.5kW = 12000 BTU).
+      url: 'https://www.ventigo.fr/fr_FR/p/climatiseur-mobile-split-midea-portasplit-35-kw/38775/',
       enabled: true,
-      fiability: 'best-effort',
+      fiability: 'reliable',
     },
 
     // ── A resoudre au 1er run (module generique) : desactives par defaut ────
