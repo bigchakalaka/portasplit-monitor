@@ -12,7 +12,7 @@ module.exports = {
         '#add-to-cart-button',
         '#buy-now-button',
         '#availability .a-color-success',
-        'text=/en stock/i',
+        '#availability:has-text("en stock")',
       ],
       outOfStockSelectors: [
         'text=/actuellement indisponible/i',
