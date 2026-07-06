@@ -17,5 +17,8 @@
     "node-cron": "^3.0.3",
     "playwright": "^1.47.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "pm2": "^7.0.3"
+  }
 }

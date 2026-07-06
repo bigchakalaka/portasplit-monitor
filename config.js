@@ -85,8 +85,9 @@ module.exports = {
       name: 'Ventigo',
       type: 'retailer',
       // Fiche produit confirmee (ref 81002309, 3.5kW = 12000 BTU).
+      // Desactive : stock affiche non fiable (commande passee alors qu'ils etaient rupture).
       url: 'https://www.ventigo.fr/fr_FR/p/climatiseur-mobile-split-midea-portasplit-35-kw/38775/',
-      enabled: true,
+      enabled: false,
       fiability: 'reliable',
     },
 
